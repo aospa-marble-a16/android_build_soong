@@ -59,6 +59,8 @@ def parse_args():
   parser.add_argument('--aospa-major-version', required=True)
   parser.add_argument('--aospa-minor-version', required=True)
   parser.add_argument('--aospa-build-variant', required=True)
+  parser.add_argument('--pihooks-gms-fp', default="")
+  parser.add_argument('--pihooks-gms-model', default="")
 
   parser.add_argument('--out', required=True, type=argparse.FileType('w'))
 
@@ -165,6 +167,9 @@ def main():
       print(f"ro.aospa.version.minor={option.aospa_minor_version}")
     if option.aospa_build_variant:
       print(f"ro.aospa.build.variant={option.aospa_build_variant}")
+
+    print(f"persist.sys.pihooks_FINGERPRINT={option.pihooks_gms_fp}")
+    print(f"persist.sys.pihooks_MODEL={option.pihooks_gms_model}") 
 
     print(f"# end build properties")
 
