@@ -1308,7 +1308,17 @@ func AndroidAppFactory() android.Module {
 			return
 		}
 
-		rroPackageName := a.Name() + "__" + strings.ReplaceAll(characteristics, ",", "_") + "__auto_generated_characteristics_rro"
+		moduleName := a.Name()
+
+        overrideName := strings.Replace(
+	        strings.Replace(
+		        strings.Replace(moduleName, "lineageos", "aospa", -1),
+		        "Lineage", "AOSPA", -1,
+	        ),
+	        "lineage", "aospa", -1,
+        )
+
+        rroPackageName := overrideName + "__" + strings.ReplaceAll(characteristics, ",", "_") + "__auto_generated_characteristics_rro"
 		rroManifestName := rroPackageName + "_manifest"
 
 		a.appProperties.ProductCharacteristicsRROPackageName = proptools.StringPtr(rroPackageName)
